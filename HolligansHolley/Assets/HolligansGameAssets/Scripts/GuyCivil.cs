@@ -11,6 +11,8 @@ public class GuyCivil : MonoBehaviour
     float waitTime;
     [SerializeField] int pointHitted = -200;
     [SerializeField] int pointMissed = 50;
+
+    bool hasHitPlayer = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,21 @@ public class GuyCivil : MonoBehaviour
         if (timeZero >= waitTime)
         {
             GameManager.Instance.UpdateCurrentScore(pointMissed);
-            Destroy(this.gameObject);
+            if (this.gameObject.CompareTag("Enemy"))
+            {
+                this.transform.GetChild(0).gameObject.SetActive(true);
+                if (!hasHitPlayer)
+                {
+                    GameManager.Instance.TakeDamage();
+                    hasHitPlayer = true;
+                }
+                this.GetComponent<Collider>().enabled = false;
+                Destroy(this.gameObject, 0.5f);
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
         else
         {
@@ -36,6 +52,11 @@ public class GuyCivil : MonoBehaviour
         if (collision.gameObject.tag == "BulletPlayer")
         {
             GameManager.Instance.UpdateCurrentScore(pointHitted);
+            Destroy(collision.gameObject);
+            Destroy(this.gameObject);
         }
     }
+    /*public void SendHittedScored()
+    {
+    }*/
 }

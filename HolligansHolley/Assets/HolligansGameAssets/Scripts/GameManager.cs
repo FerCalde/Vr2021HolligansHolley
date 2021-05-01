@@ -23,7 +23,7 @@ public class GameManager : TemporalSingleton<GameManager>
     public event OnUpdateHUD OnUpdateTimeText;
     public event OnUpdateHUD OnUpdateScore;
     public event OnUpdateHUD OnUpdateLife;
-
+    public event OnUpdateHUD OnUpdateEndGame;
     public float CantVidas
     {
         get
@@ -50,9 +50,21 @@ public class GameManager : TemporalSingleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
+        if (Time.timeScale < 1)
+        {
+            Time.timeScale = 1;
+        }
         cantVidas = 3;
         currentScore = 0;
         currentPlayTime = maxPlayTime;
+        //Actualizo los métodos desde Start para que se inicien bien en juego BUGCONTROL
+        StartGame();
+    }
+    void StartGame()
+    {
+        OnUpdateTimeText();
+        OnUpdateScore();
+        OnUpdateLife();
     }
 
     /*void Update()
@@ -66,7 +78,7 @@ public class GameManager : TemporalSingleton<GameManager>
     {
         currentPlayTime -= Time.fixedDeltaTime;
         OnUpdateTimeText();
-        
+
         //Termina tiempo Partida
         if (currentPlayTime <= 0)
         {
@@ -76,12 +88,12 @@ public class GameManager : TemporalSingleton<GameManager>
     public void EnemyHitted()
     {
         //UpdateCurrentScore(100);
-    } 
+    }
     public void CivilHitted()
     {
         //UpdateCurrentScore(-200);
     }
- 
+
     public void PlayerHitted()
     {
         TakeDamage();
@@ -95,7 +107,7 @@ public class GameManager : TemporalSingleton<GameManager>
         OnUpdateScore();
     }
     //Cuando un enemigo nos dispare antes de desaparecer
-    void TakeDamage()
+    public void TakeDamage()
     {
         cantVidas--;
         //Event
@@ -116,7 +128,12 @@ public class GameManager : TemporalSingleton<GameManager>
 
     void EndGame()
     {
+        //Actualizo los datos
         DataScore.Instance.CheckHighScore(currentScore);
+        //Actualizo HUD
+        OnUpdateEndGame();
+        //Paro el tiempo para que no se ejecuten corutinas ni código en bucle
+        Time.timeScale = 0f;
     }
 
 }
