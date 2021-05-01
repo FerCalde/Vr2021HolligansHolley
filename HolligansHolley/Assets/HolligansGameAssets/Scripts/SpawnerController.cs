@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnerController : MonoBehaviour
 {
-    [SerializeField] public List<SitiosSpawneables> SpawnPoints = new List<SitiosSpawneables>();
+    //[SerializeField] public List<SitiosSpawneables> SpawnPoints = new List<SitiosSpawneables>();
 
     [SerializeField] Transform[] PuntosSpawn;
     [SerializeField] GameObject[] PersonTypes;
@@ -66,7 +66,7 @@ public class SpawnerController : MonoBehaviour
 
     void CheckEmptySpawn()
     {
-        int nextPointToSpawn = Mathf.RoundToInt(Random.Range(0, SpawnPoints.Count));
+        int nextPointToSpawn = Mathf.RoundToInt(Random.Range(0, PuntosSpawn.Length));
         if (PuntosSpawn[nextPointToSpawn].childCount == 0)
         {
             Instantiate(PersonTypes[(Random.Range(0, PersonTypes.Length))], PuntosSpawn[nextPointToSpawn]);

@@ -75,15 +75,15 @@ public class GameManager : TemporalSingleton<GameManager>
     }
     public void EnemyHitted()
     {
-        UpdateCurrentScore(100);
+        //UpdateCurrentScore(100);
     } 
     public void CivilHitted()
     {
-        UpdateCurrentScore(-200);
+        //UpdateCurrentScore(-200);
     }
+ 
     public void PlayerHitted()
     {
-
         TakeDamage();
     }
     public void UpdateCurrentScore(int points)
