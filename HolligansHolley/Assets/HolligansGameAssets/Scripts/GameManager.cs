@@ -77,9 +77,12 @@ public class GameManager : TemporalSingleton<GameManager>
     {
         UpdateCurrentScore(100);
     } 
-    public void PlayerHitted()
+    public void CivilHitted()
     {
         UpdateCurrentScore(-200);
+    }
+    public void PlayerHitted()
+    {
 
         TakeDamage();
     }
