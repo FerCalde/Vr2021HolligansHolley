@@ -12,5 +12,11 @@ public class BulletPlayer : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(this.gameObject);
         }
+        else if (collision.gameObject.CompareTag("Civil"))
+        {
+            GameManager.Instance.CivilHitted();
+            Destroy(collision.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 }
