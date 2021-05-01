@@ -20,9 +20,22 @@ public class GameManager : TemporalSingleton<GameManager>
       }
       #endregion   */
 
-
+    [SerializeField] public float CurrentPlayTime
+    {
+        get
+        {
+            return currentPlayTime;
+        }
+    }
+    [SerializeField]public int CurrentScore
+    {
+        get
+        {
+            return currentScore;
+        }
+    }
     // Start is called before the first frame update
-   
+
     void Start()
     {
         cantVidas = 3;
@@ -39,7 +52,7 @@ public class GameManager : TemporalSingleton<GameManager>
     void FixedUpdate()
     {
         currentPlayTime += Time.fixedDeltaTime;
-        
+
         //Termina tiempo Partida
         if (currentPlayTime >= maxPlayTime)
         {
