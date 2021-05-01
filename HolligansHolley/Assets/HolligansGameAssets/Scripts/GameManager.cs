@@ -51,6 +51,21 @@ public class GameManager : TemporalSingleton<GameManager>
     {
         currentScore += points;
     }
+    //Cuando un enemigo nos dispare antes de desaparecer
+    public void TakeDamage()
+    {
+        cantVidas--;
+
+        if (cantVidas <= 0)
+        {
+            EndGame();
+        }
+    }
+    //Metodo por si hacemos mecánica de curacion
+    public void HealLife()
+    {
+        cantVidas++;
+    }
 
     void EndGame()
     {
