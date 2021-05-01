@@ -10,7 +10,7 @@ public class GameManager : TemporalSingleton<GameManager>
 
 
     float maxPlayTime = 60f;
-    float currentPlayTime = 0f;
+    float currentPlayTime;
     /*  #region Singleton
       public static GameManager Instance;
 
@@ -20,26 +20,40 @@ public class GameManager : TemporalSingleton<GameManager>
       }
       #endregion   */
 
-    [SerializeField] public float CurrentPlayTime
+    public delegate void OnUpdateHUD();
+    public event OnUpdateHUD OnUpdateTimeText;
+    public event OnUpdateHUD OnUpdateScore;
+    public event OnUpdateHUD OnUpdateLife;
+
+    public float CantVidas
+    {
+        get
+        {
+            return cantVidas;
+        }
+    }
+    public float CurrentPlayTime
     {
         get
         {
             return currentPlayTime;
         }
     }
-    [SerializeField]public int CurrentScore
+    public int CurrentScore
     {
         get
         {
             return currentScore;
         }
     }
-    // Start is called before the first frame update
 
+
+    // Start is called before the first frame update
     void Start()
     {
         cantVidas = 3;
         currentScore = 0;
+        currentPlayTime = maxPlayTime;
     }
 
     /*void Update()
@@ -51,10 +65,11 @@ public class GameManager : TemporalSingleton<GameManager>
     //Desde fixedUpdate se ejecuta en todos los procesadores a la misma velocidad, por tanto siempre nos asegura que sea igual para cada dispositivo
     void FixedUpdate()
     {
-        currentPlayTime += Time.fixedDeltaTime;
-
+        currentPlayTime -= Time.fixedDeltaTime;
+        OnUpdateTimeText();
+        
         //Termina tiempo Partida
-        if (currentPlayTime >= maxPlayTime)
+        if (currentPlayTime <= 0)
         {
             EndGame();
         }
@@ -62,13 +77,18 @@ public class GameManager : TemporalSingleton<GameManager>
 
     public void UpdateCurrentScore(int points)
     {
+        //Sumo puntuacion
         currentScore += points;
+
+        //Evento para que se actualice el Punto 
+        OnUpdateScore();
     }
     //Cuando un enemigo nos dispare antes de desaparecer
     public void TakeDamage()
     {
         cantVidas--;
-
+        //Event
+        OnUpdateLife();
         if (cantVidas <= 0)
         {
             EndGame();
@@ -78,6 +98,8 @@ public class GameManager : TemporalSingleton<GameManager>
     public void HealLife()
     {
         cantVidas++;
+        //Event
+        OnUpdateLife();
     }
 
     void EndGame()
