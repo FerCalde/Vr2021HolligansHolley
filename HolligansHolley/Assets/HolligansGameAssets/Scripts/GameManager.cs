@@ -8,7 +8,6 @@ public class GameManager : TemporalSingleton<GameManager>
 
     int cantVidas = 3; //En caso de que queramos que los enemigos disparen y nos mate la tercera bala
 
-
     float maxPlayTime = 60f;
     float currentPlayTime;
     /*  #region Singleton
@@ -74,7 +73,16 @@ public class GameManager : TemporalSingleton<GameManager>
             EndGame();
         }
     }
+    public void EnemyHitted()
+    {
+        UpdateCurrentScore(100);
+    } 
+    public void PlayerHitted()
+    {
+        UpdateCurrentScore(-200);
 
+        TakeDamage();
+    }
     public void UpdateCurrentScore(int points)
     {
         //Sumo puntuacion
@@ -84,11 +92,12 @@ public class GameManager : TemporalSingleton<GameManager>
         OnUpdateScore();
     }
     //Cuando un enemigo nos dispare antes de desaparecer
-    public void TakeDamage()
+    void TakeDamage()
     {
         cantVidas--;
         //Event
         OnUpdateLife();
+        //CheckStillAlive
         if (cantVidas <= 0)
         {
             EndGame();
