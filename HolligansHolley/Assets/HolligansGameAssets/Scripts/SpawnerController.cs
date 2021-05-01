@@ -16,15 +16,41 @@ public class SpawnerController : MonoBehaviour
     GameObject obj;
 
     int cantEnemy = 0;
-    [SerializeField] int cantMaxEnemy = 6;
+    // [SerializeField] int cantMaxEnemy = 6;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         isFull = false;
         StartCoroutine(SpawnPeople());
     }
-    /*
-    // Update is called once per frame
+
+    IEnumerator SpawnPeople()
+    {
+        while (!isFull)
+        {
+            float delay = Random.Range(minSpawnTime, maxSpawnTime);
+            yield return new WaitForSeconds(delay);
+
+            CheckEmptySpawn();
+            //CheckEmptySpawn();
+        }
+    }
+
+
+    void CheckEmptySpawn()
+    {
+        int nextPointToSpawn = Mathf.RoundToInt(Random.Range(0, PuntosSpawn.Length));
+        if (PuntosSpawn[nextPointToSpawn].childCount == 0)
+        {
+            Instantiate(PersonTypes[(Random.Range(0, PersonTypes.Length))], PuntosSpawn[nextPointToSpawn]);
+            print("LETS GOOO INSTANCEEEE");
+        }
+    }
+
+    /*Update is called once per frame
     void Update()
     {
         if (!isFull)
@@ -43,39 +69,17 @@ public class SpawnerController : MonoBehaviour
         }
     }
     */
-
-    IEnumerator SpawnPeople()
-    {
-        while (!isFull)
-        {
-            float delay = Random.Range(minSpawnTime, maxSpawnTime);
-            yield return new WaitForSeconds(delay);
-
-            CheckEmptySpawn();
-            //CheckEmptySpawn();
-        }
-    }
-    
-    IEnumerator DelayFullPeople()
+   /* IEnumerator DelayFullPeople()
     {
         float delay = 3f;
         yield return new WaitForSeconds(delay);
-        
+
         isFull = false;
-    }
-
-    void CheckEmptySpawn()
-    {
-        int nextPointToSpawn = Mathf.RoundToInt(Random.Range(0, PuntosSpawn.Length));
-        if (PuntosSpawn[nextPointToSpawn].childCount == 0)
-        {
-            Instantiate(PersonTypes[(Random.Range(0, PersonTypes.Length))], PuntosSpawn[nextPointToSpawn]);
-            print("LETS GOOO INSTANCEEEE");
-        }
-
-    }
+    }*/
 
 }
+
+
 [System.Serializable]
 public class SitiosSpawneables
 {

@@ -33,6 +33,7 @@ public class DataScore : PersistentSingleton<DataScore>
         if (currentScored > highScore)
         {
             SaveHighScore(currentScored);
+            LoadHighScore();
         }
     }
 }
