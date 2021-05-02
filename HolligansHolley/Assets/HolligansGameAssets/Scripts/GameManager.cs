@@ -24,6 +24,7 @@ public class GameManager : TemporalSingleton<GameManager>
     public event OnUpdateHUD OnUpdateScore;
     public event OnUpdateHUD OnUpdateLife;
     public event OnUpdateHUD OnUpdateEndGame;
+    public event OnUpdateHUD OnPlayerHitted;
     public float CantVidas
     {
         get
@@ -94,10 +95,7 @@ public class GameManager : TemporalSingleton<GameManager>
         //UpdateCurrentScore(-200);
     }
 
-    public void PlayerHitted()
-    {
-        TakeDamage();
-    }
+ 
     public void UpdateCurrentScore(int points)
     {
         //Sumo puntuacion
@@ -112,6 +110,7 @@ public class GameManager : TemporalSingleton<GameManager>
         cantVidas--;
         //Event
         OnUpdateLife();
+        OnPlayerHitted();
         //CheckStillAlive
         if (cantVidas <= 0)
         {
