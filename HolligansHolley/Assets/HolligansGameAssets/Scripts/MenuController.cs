@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    [SerializeField] GameObject panelMainMenu, panelEndGame;
+    [SerializeField] GameObject panelMainMenu, panelEndGame, panelBorrarGame;
     [SerializeField] Text highScoreText;
-    
+
 
     public void PlayGame()
     {
@@ -16,8 +16,7 @@ public class MenuController : MonoBehaviour
     }
     public void OpenHighScore()
     {
-        DataScore.Instance.LoadHighScore();
-        highScoreText.text = DataScore.Instance.highScore.ToString() + " points"; 
+        UpdateHighScoreText();
         panelEndGame.SetActive(true);
         panelMainMenu.SetActive(false);
     }
@@ -32,4 +31,26 @@ public class MenuController : MonoBehaviour
     }
 
 
+    public void OpenPanelBorrarScore()
+    {
+        panelBorrarGame.SetActive(true);
+    }
+
+    public void ClosePanelBorrarScore()
+    {
+        panelBorrarGame.SetActive(false);
+    }
+
+    public void BorrarScore()
+    {
+        DataScore.Instance.SaveHighScore(0);
+        UpdateHighScoreText();
+        ClosePanelBorrarScore();
+    }
+
+    void UpdateHighScoreText()
+    {
+        DataScore.Instance.LoadHighScore();
+        highScoreText.text = DataScore.Instance.highScore.ToString() + " points";
+    }
 }

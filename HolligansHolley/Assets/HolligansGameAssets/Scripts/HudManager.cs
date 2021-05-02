@@ -9,10 +9,11 @@ public class HudManager : MonoBehaviour
     Text scoreText;
     [SerializeField]GameObject[] imgVidas;
 
-    GameObject panelHud, panelEndGame;
-    Text highScoreText;
-    Text endScoreText;
-    GameObject newRecordText; 
+    GameObject panelHud;
+    [SerializeField]GameObject panelEndGame;
+    [SerializeField]Text highScoreText;
+    [SerializeField]Text endScoreText;
+    [SerializeField]GameObject newRecordText; 
 
     // Start is called before the first frame update
     void Start()
@@ -25,12 +26,12 @@ public class HudManager : MonoBehaviour
 
         //Busco las referencias necesarias
         panelHud = GameObject.Find("Panel_HUD");
-        panelEndGame = GameObject.Find("Panel_EndGame");
+        //panelEndGame = GameObject.Find("Panel_EndGame");
         timeText = GameObject.Find("Text_Time").GetComponent<Text>();
         scoreText = GameObject.Find("Text_Score").GetComponent<Text>();
-        endScoreText = GameObject.Find("Text_EndScore").GetComponent<Text>();
-        highScoreText = GameObject.Find("Text_HighScore").GetComponent<Text>();
-        newRecordText = GameObject.Find("Text_NewRecord");
+        //endScoreText = GameObject.Find("Text_EndScore").GetComponent<Text>();
+        //highScoreText = GameObject.Find("Text_HighScore").GetComponent<Text>();
+        //newRecordText = GameObject.Find("Text_NewRecord");
 
         //Desactivo elementos de interfaz del EndGame
         newRecordText.SetActive(false);
