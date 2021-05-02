@@ -11,4 +11,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/HolligansGameAssets/Scenes/GameScene.unity
     guid: 20f12a3b16a7ecc4cbfc5c10cda1332e
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 4b192945545b6e147a58ce37c83e5997, type: 2}
