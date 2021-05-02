@@ -1,13 +1,19 @@
 {
   "dependencies": {
     "com.google.xr.cardboard": {
-      "version": "file:E:/123AA U-Tad LastYear/RealidadVirtual/Paquetito/cardboard-xr-plugin",
+      "version": "file:D:/Users/uliro/Documents/GitHub/cardboard-xr-plugin",
       "depth": 0,
       "source": "local",
       "dependencies": {
         "com.unity.xr.management": "3.2.9",
         "com.unity.xr.legacyinputhelpers": "2.1.4"
       }
+    },
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
     },
     "com.unity.collab-proxy": {
       "version": "1.3.9",
