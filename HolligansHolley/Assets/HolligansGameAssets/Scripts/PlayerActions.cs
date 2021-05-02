@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.XR;
 public class PlayerActions : MonoBehaviour
 {
     AudioSource cmpAudioSource;
@@ -21,7 +21,16 @@ public class PlayerActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (!XRSettings.enabled)
+        {
+            //Check inputTeclado
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Shoot();
+            }
+        }
+        // Checks for screen touches.
+        if (Google.XR.Cardboard.Api.IsTriggerPressed)
         {
             Shoot();
         }
