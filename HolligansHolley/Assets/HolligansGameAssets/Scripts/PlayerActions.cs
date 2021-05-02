@@ -30,25 +30,24 @@ public class PlayerActions : MonoBehaviour
                 Shoot();
             }
         }
-        else
+
+        // Checks for screen touches.
+        if (Google.XR.Cardboard.Api.IsTriggerPressed)
         {
-            // Checks for screen touches.
-            if (Google.XR.Cardboard.Api.IsTriggerPressed)
-            {
-                Shoot();
-            }
+            Shoot();
         }
+
     }
     void Shoot()
-    {   
+    {
         //DireccionNormalizada
         Vector3 dirBullet = this.transform.forward;
         dirBullet.Normalize();
-        
+
         //InstanciarBullet
         GameObject bulletFire = Instantiate(prefBullet, this.transform.position, this.transform.rotation);
         bulletFire.GetComponent<Rigidbody>().AddForce(dirBullet * forceImpulse, ForceMode.Impulse);
-       
+
         cmpAudioSource.PlayOneShot(soundShoot);
 
         Destroy(bulletFire, 3f);
@@ -56,7 +55,7 @@ public class PlayerActions : MonoBehaviour
     void Shoot(Vector3 dirBullet)
     {
         GameObject bulletFire = Instantiate(prefBullet, this.transform.position, this.transform.rotation);
-        
+
         cmpAudioSource.PlayOneShot(soundShoot);
 
         Destroy(bulletFire, 3f);

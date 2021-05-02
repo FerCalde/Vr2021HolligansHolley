@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class BulletPlayer : MonoBehaviour
 {
+    AudioSource cmpAudiosource;
+    [SerializeField]AudioClip soundFail;
+    void Start()
+    {
+        cmpAudiosource = GetComponent<AudioSource>();
+    }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Civil"))
+        /*if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Civil"))
         {
             //GameManager.Instance.EnemyHitted();
             //collision.gameObject.GetComponent<GuyCivil>().SendHittedScored();
@@ -19,5 +25,7 @@ public class BulletPlayer : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(this.gameObject);
         }*/
+        cmpAudiosource.PlayOneShot(soundFail);
+        Destroy(this.gameObject, 0.1f);
     }
 }
