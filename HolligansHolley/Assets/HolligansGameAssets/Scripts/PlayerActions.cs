@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+
 public class PlayerActions : MonoBehaviour
 {
     AudioSource cmpAudioSource;
@@ -29,10 +30,13 @@ public class PlayerActions : MonoBehaviour
                 Shoot();
             }
         }
-        // Checks for screen touches.
-        if (Google.XR.Cardboard.Api.IsTriggerPressed)
+        else
         {
-            Shoot();
+            // Checks for screen touches.
+            if (Google.XR.Cardboard.Api.IsTriggerPressed)
+            {
+                Shoot();
+            }
         }
     }
     void Shoot()
