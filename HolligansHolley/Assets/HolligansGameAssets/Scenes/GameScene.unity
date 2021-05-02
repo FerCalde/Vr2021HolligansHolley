@@ -811,6 +811,10 @@ MonoBehaviour:
   - {fileID: 1919928520}
   - {fileID: 359374363}
   - {fileID: 748185450}
+  panelEndGame: {fileID: 925370847}
+  highScoreText: {fileID: 1444502481}
+  endScoreText: {fileID: 1278424713}
+  newRecordText: {fileID: 253831057}
 --- !u!1 &629142487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,7 +1164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &925370848
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2328,9 +2332,17 @@ MonoBehaviour:
   - {fileID: 1928409836}
   PersonTypes:
   - {fileID: 4534646438513776052, guid: 0a73a2b392d034d4ca8f32b31670251a, type: 3}
+  - {fileID: 4534646438513776052, guid: 0a73a2b392d034d4ca8f32b31670251a, type: 3}
+  - {fileID: 4534646438513776052, guid: 3bf075a5daaed374f96926fd74635028, type: 3}
+  - {fileID: 4534646438513776052, guid: 3bf075a5daaed374f96926fd74635028, type: 3}
+  - {fileID: 4534646438513776052, guid: cd4d523199ddebf4f90c1194ba4a111a, type: 3}
+  - {fileID: 4534646438513776052, guid: cd4d523199ddebf4f90c1194ba4a111a, type: 3}
   - {fileID: 3538645212135286808, guid: 7ba48d6be1f2adb409f225c132d04fec, type: 3}
-  minSpawnTime: 3
-  maxSpawnTime: 5
+  - {fileID: 3538645212135286808, guid: 7ba48d6be1f2adb409f225c132d04fec, type: 3}
+  - {fileID: 3538645212135286808, guid: 7ba48d6be1f2adb409f225c132d04fec, type: 3}
+  - {fileID: 3538645212135286808, guid: 7ba48d6be1f2adb409f225c132d04fec, type: 3}
+  minSpawnTime: 1.5
+  maxSpawnTime: 4
 --- !u!1 &2018800881
 GameObject:
   m_ObjectHideFlags: 0
