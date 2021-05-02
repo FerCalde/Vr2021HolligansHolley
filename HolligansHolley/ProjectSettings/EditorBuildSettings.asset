@@ -5,11 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/HolligansGameAssets/Scenes/MenuScene.unity
     guid: 39b526bd0c89ed64dba43d2955b43802
-  - enabled: 1
+  - enabled: 0
     path: Assets/HolligansGameAssets/Scenes/GameScene.unity
     guid: 20f12a3b16a7ecc4cbfc5c10cda1332e
+  - enabled: 0
+    path: Assets/Samples/Google Cardboard XR Plugin for Unity/1.4.1/Hello Cardboard/Scenes/HelloCardboard
+      1.unity
+    guid: 21ea6dd080036084c8a759521338edaa
+  - enabled: 1
+    path: Assets/Samples/Google Cardboard XR Plugin for Unity/1.4.1/Hello Cardboard/Scenes/VrMode.unity
+    guid: 4812ec05e87b8414abcdfe0d625c0e60
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 4b192945545b6e147a58ce37c83e5997, type: 2}
