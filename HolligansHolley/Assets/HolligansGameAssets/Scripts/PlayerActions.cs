@@ -5,14 +5,17 @@ using UnityEngine;
 public class PlayerActions : MonoBehaviour
 {
     AudioSource cmpAudioSource;
-    //[SerializeField] AudioClip soundShoot, soundHit;
+    [SerializeField] AudioClip soundShoot, soundWall, soundHitted;
     [SerializeField] float forceImpulse;
     [SerializeField] GameObject prefBullet;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         cmpAudioSource = GetComponent<AudioSource>();
+        GameManager.Instance.OnPlayerHitted += SoundHitted;
     }
 
     // Update is called once per frame
@@ -33,7 +36,7 @@ public class PlayerActions : MonoBehaviour
         GameObject bulletFire = Instantiate(prefBullet, this.transform.position, this.transform.rotation);
         bulletFire.GetComponent<Rigidbody>().AddForce(dirBullet * forceImpulse, ForceMode.Impulse);
        
-        //cmpAudioSource.PlayOneShot(soundShoot);
+        cmpAudioSource.PlayOneShot(soundShoot);
 
         Destroy(bulletFire, 3f);
     }
@@ -41,8 +44,13 @@ public class PlayerActions : MonoBehaviour
     {
         GameObject bulletFire = Instantiate(prefBullet, this.transform.position, this.transform.rotation);
         
-        //cmpAudioSource.PlayOneShot(soundShoot);
+        cmpAudioSource.PlayOneShot(soundShoot);
 
         Destroy(bulletFire, 3f);
+    }
+
+    void SoundHitted()
+    {
+        cmpAudioSource.PlayOneShot(soundHitted);
     }
 }
